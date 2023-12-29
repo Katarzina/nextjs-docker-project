@@ -12,9 +12,18 @@ import { MentorsModule } from './mentors/mentors.module';
 import { MentorEntity } from './mentors/entities/mentor.entity';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { SubscriptionEntity } from './subscriptions/entities/subscription.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { AppResolver } from './app.resolver';
 
 @Module({
   imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: 'schema.gql',
+      sortSchema: true,
+      playground: true,
+    }),
     ConfigModule.forRoot({ envFilePath: `.${process.env.NODE_ENV}.env` }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -38,6 +47,6 @@ import { SubscriptionEntity } from './subscriptions/entities/subscription.entity
     SubscriptionsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}
