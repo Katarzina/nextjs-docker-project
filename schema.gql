@@ -1,0 +1,98 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Activity {
+  activity: String!
+  endDate: DateTime!
+  id: ID!
+  mentorId: Int!
+  startDate: DateTime!
+  subscriptions: [Subscription!]
+  theme: String!
+}
+
+input CreateActivityDto {
+  activity: String!
+  endDate: DateTime!
+  mentorId: Int!
+  startDate: DateTime!
+  theme: String!
+}
+
+input CreateMentorDto {
+  """Full name of the mentor"""
+  fullName: String!
+}
+
+input CreateSubscriptionDto {
+  activityId: Int!
+  userId: Int!
+}
+
+input CreateUserDto {
+  email: String!
+  fullName: String!
+  password: String!
+  role: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type MentorType {
+  fullName: String!
+  id: Int!
+}
+
+type Mutation {
+  createActivity(createActivityDto: CreateActivityDto!): Activity!
+  createMentor(createMentorDto: CreateMentorDto!): MentorType!
+  createSubscription(createSubscriptionDto: CreateSubscriptionDto!): Subscription!
+  createUser(createUserDto: CreateUserDto!): User!
+  removeActivity(id: Int!): Boolean!
+  removeMentor(id: Int!): Boolean!
+  removeSubscription(id: Int!): Boolean!
+  updateActivity(id: Int!, updateActivityDto: UpdateActivityDto!): Activity!
+  updateMentor(id: Int!, updateMentorDto: UpdateMentorDto!): MentorType!
+}
+
+type Query {
+  activities: [Activity!]!
+  activity(id: Int!): Activity!
+  hello: String!
+  mentor(id: Int!): MentorType
+  mentors: [MentorType!]!
+  subscriptions: [Subscription!]!
+  user(id: Int!): User!
+  userByEmail(email: String!): User!
+}
+
+type Subscription {
+  activity: Activity!
+  id: ID!
+  user: User!
+}
+
+input UpdateActivityDto {
+  activity: String
+  endDate: DateTime
+  mentorId: Int
+  startDate: DateTime
+  theme: String
+}
+
+input UpdateMentorDto {
+  """Full name of the mentor"""
+  fullName: String
+}
+
+type User {
+  email: String!
+  fullName: String!
+  id: ID!
+  role: String!
+  subscriptions: [Subscription]
+}

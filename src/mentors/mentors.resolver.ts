@@ -4,7 +4,7 @@ import { MentorType } from './graphql-types/mentor.type';
 import { CreateMentorDto } from './dto/create-mentor.dto';
 import { UpdateMentorDto } from './dto/update-mentor.dto';
 
-@Resolver(() => MentorType)
+@Resolver((of) => MentorType)
 export class MentorsResolver {
   constructor(private readonly mentorsService: MentorsService) {}
 
