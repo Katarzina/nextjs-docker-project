@@ -15,6 +15,7 @@ import { SubscriptionEntity } from './subscriptions/entities/subscription.entity
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppResolver } from './app.resolver';
+import { SocketService } from './socket/socket.service';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { AppResolver } from './app.resolver';
     ActivitiesModule,
     MentorsModule,
     SubscriptionsModule,
+    SocketService
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
